@@ -4,21 +4,28 @@ const Todo = require('../models/todoModel');
 
 
 // get all items
-router.get('/api', function(req, res, next) {
-  res.json(todoItems);
+router.get('/', async(req, res) => {
+  const todos = await Todo.find({});
+  res.status(200).json({
+    status: "success",
+    results: todos.length,
+    data: {
+      todo: todos,
+    },
+  });
 });
 
 //get specific item
-router.get('/api/:id', function(req, res, next) {
+router.get('/api/:id', async(req, res) => {
 
 });
 
 // create ny item
-router.post('/add', async(req, res, next) => {
+router.post('/add', async(req, res) => {
   const {title, content} = req.body;
   const todo = {title, content};
   const newTodo = await Todo.create(todo);
-  res.status(201).json({
+  res.status(200).json({
     status: "success",
     data: {
       todo: newTodo,
@@ -27,13 +34,13 @@ router.post('/add', async(req, res, next) => {
 });
 
 // update item
-router.post('/api/:id', function(req, res, next) {
+router.post('/api/:id', function(req, res) {
  todoItems.push(req.body);
  res.json(todoItems);
 });
 
 // delete item
-router.delete('/api/:id', function(req, res, next) {
+router.delete('/api/:id', function(req, res) {
  
 });
 
