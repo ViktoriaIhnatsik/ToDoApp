@@ -10,7 +10,7 @@ router.get('/', async(req, res) => {
     status: "success",
     results: todos.length,
     data: {
-      todo: todos,
+      todos,
     },
   });
 });
@@ -24,16 +24,18 @@ router.get('/:id', async(req, res) => {
   res.status(200).json({
     status: "success",
     data: {
-      todo: todo,
+     todo,
     },
   });
 });
 
 // create ny item
 router.post('/', async(req, res) => {
-  const {title, content} = req.body;
-  const todo = {title, content};
-  const newTodo = await Todo.create(todo);
+  const {title, content } = req.body;
+  const newTodo = await new Todo({
+    title,
+    content,
+  });
   res.status(200).json({
     status: "success",
     data: {
@@ -44,7 +46,7 @@ router.post('/', async(req, res) => {
 
 // update item
 router.post('/:id', async(req, res) => {
- const updatedTodo = await Todo.finByIdAndUpdate(
+ const updatedTodo = await Todo.findOneAndUpdate(
    {_id: req.params.id},
    req.body
    );
@@ -64,9 +66,7 @@ router.delete('/:id', async(req, res) => {
   };
   res.status(204).json({
     status: "success",
-    data: {
-      todo: null,
-    },
+    data:  null,
   });
 });
 
