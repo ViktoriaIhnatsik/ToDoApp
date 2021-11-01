@@ -16,12 +16,21 @@ router.get('/', async(req, res) => {
 });
 
 //get specific item
-router.get('/api/:id', async(req, res) => {
-
+router.get('/:id', async(req, res) => {
+  const todo = await Todo.findOne({_id: req.params.id});
+  if(!todo){
+    console.error('No found')
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      todo: todo,
+    },
+  });
 });
 
 // create ny item
-router.post('/add', async(req, res) => {
+router.post('/', async(req, res) => {
   const {title, content} = req.body;
   const todo = {title, content};
   const newTodo = await Todo.create(todo);
