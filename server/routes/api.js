@@ -20,7 +20,7 @@ router.get('/:id', async(req, res) => {
   const todo = await Todo.findOne({_id: req.params.id});
   if(!todo){
     console.error('No found')
-  }
+  };
   res.status(200).json({
     status: "success",
     data: {
@@ -43,14 +43,31 @@ router.post('/', async(req, res) => {
 });
 
 // update item
-router.post('/api/:id', function(req, res) {
- todoItems.push(req.body);
- res.json(todoItems);
+router.post('/:id', async(req, res) => {
+ const updatedTodo = await Todo.finByIdAndUpdate(
+   {_id: req.params.id},
+   req.body
+   );
+   res.status(200).json({
+    status: "success",
+    data: {
+      todo: updatedTodo,
+    },
+  });
 });
 
 // delete item
-router.delete('/api/:id', function(req, res) {
- 
+router.delete('/:id', async(req, res) => {
+  const todo = await Todo.findOneAndDelete({_id: req.params.id});
+   if(!todo){
+    console.error('No found')
+  };
+  res.status(204).json({
+    status: "success",
+    data: {
+      todo: null,
+    },
+  });
 });
 
 module.exports = router;
