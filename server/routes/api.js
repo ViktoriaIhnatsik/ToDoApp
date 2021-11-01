@@ -4,7 +4,7 @@ const Todo = require('../models/todoModel');
 
 
 // get all items
-router.get('/', async(req, res) => {
+router.get('/', async (req, res) => {
   const todos = await Todo.find({});
   res.status(200).json({
     status: "success",
@@ -16,7 +16,7 @@ router.get('/', async(req, res) => {
 });
 
 //get specific item
-router.get('/:id', async(req, res) => {
+router.get('/:id', async (req, res) => {
   const todo = await Todo.findOne({_id: req.params.id});
   if(!todo){
     console.error('No found')
@@ -30,9 +30,9 @@ router.get('/:id', async(req, res) => {
 });
 
 // create ny item
-router.post('/', async(req, res) => {
-  const {title, content } = req.body;
-  const newTodo = await new Todo({
+router.post('/', async (req, res) => {
+  const { title, content } = req.body;
+  const newTodo = await Todo.create({
     title,
     content,
   });
@@ -45,7 +45,7 @@ router.post('/', async(req, res) => {
 });
 
 // update item
-router.post('/:id', async(req, res) => {
+router.post('/:id', async (req, res) => {
  const updatedTodo = await Todo.findOneAndUpdate(
    {_id: req.params.id},
    req.body
@@ -59,7 +59,7 @@ router.post('/:id', async(req, res) => {
 });
 
 // delete item
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async (req, res) => {
   const todo = await Todo.findOneAndDelete({_id: req.params.id});
    if(!todo){
     console.error('No found')
