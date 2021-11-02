@@ -5,8 +5,7 @@ import TodoPage from "./pages/TodoPage";
 
 function App() {
   return (
-    <div className="container text-center mt-5">
-      <p>Hello</p>
+    <div className="container mt-5">
     
       <Switch> 
 
