@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import "../App.css";
+import TodoComponent from "../components/TodoComponent";
 
 export default function TodoPage() {
-  const [todos, setTodos] = useState(null);
-  const [Loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState();
+  const [todos, setTodos] = useState([]);
 
-  const url = "http://localhost:5000/todo/";
+  useEffect(() => {
+    getTodos()
+  }, []);
 
-  useEffect(() => {}, []);
+  function getTodos() {
+    const url = "http://localhost:5000/todo/";
+    fetch(url)
+    .then(res => res.json())
+    .then(data => setTodos(data))
+  };
+ 
 
   return (
     <div className="container">
@@ -32,21 +39,9 @@ export default function TodoPage() {
       </form>
 
       <div className="row">
-        <div className="col-md-4 border p-3 m-4">
-          <h3>Title</h3>
-          <p>Content</p>
-          <div className="text-end">
-            <button
-              type="button"
-              className="btn btn-outline-warning btn-sm m-2"
-            >
-              Edit
-            </button>
-            <button type="button" className="btn btn-outline-danger btn-sm">
-              Delete
-            </button>
-          </div>
-        </div>
+        {todos.map(item => { 
+            return <TodoComponent key={item.id} todo={item} />;
+          })}
       </div>
     </div>
   );
