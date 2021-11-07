@@ -11,7 +11,7 @@ export default function TodoPage() {
   }, []);
 
   function getTodos() {
-    const url = "http://localhost:5000/todo/";
+    const url = "http://localhost:5000/todo";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setTodos(data));
@@ -24,8 +24,8 @@ export default function TodoPage() {
       <TodoFormComponent />
 
       <div className="row">
-        {todos.map((item) => {
-          return <TodoComponent key={item.id} todo={item} />;
+        {todos.map((item, key) => {
+          return <TodoComponent key={key} todo={item} />;
         })}
       </div>
     </div>
