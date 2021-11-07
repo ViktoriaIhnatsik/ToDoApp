@@ -1,6 +1,6 @@
 import React from "react";
-import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
 import TodoPage from "./pages/TodoPage";
 
 function App() {
@@ -9,10 +9,8 @@ function App() {
     
       <Switch> 
 
-        <Route path="/" component={TodoPage}> 
+        <Route path="/" component={TodoPage} /> 
         
-        </Route>
-
       </Switch>
 
     </div>
