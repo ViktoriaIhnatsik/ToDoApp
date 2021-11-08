@@ -14,12 +14,15 @@ export default function TodoFormComponent() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, content }),
-    });
+    }).then(window.location.reload());
   };
 
   return (
-    <form className="form" onSubmit={handleOnSubmit}>
-      <div className="mb-3">
+    <form
+      className="form shadow rounded p-5 m-5 "
+      onSubmit={handleOnSubmit}
+    >
+      <div className="mb-3 ">
         <label className="form-label">Title</label>
         <input
           type="text"
@@ -28,22 +31,20 @@ export default function TodoFormComponent() {
           onChange={(e) => {
             setTitle(e.target.value);
           }}
+          required
         />
       </div>
       <div className="mb-3">
         <label className="form-label">Content</label>
         <textarea
           className="form-control"
+          placeholder="Add content..."
           onChange={(e) => {
             setContent(e.target.value);
           }}
         />
       </div>
-      <button
-        onClick={() => window.location.reload(false)}
-        type="submit"
-        className="btn btn-secondary"
-      >
+      <button type="submit" className="btn btn-secondary">
         Add
       </button>
     </form>
