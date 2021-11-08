@@ -1,7 +1,18 @@
 import React from "react";
+import "../App.css";
 import { useState } from "react";
 import Modal from "react-modal";
 Modal.setAppElement(document.getElementById("root"));
+
+const customStyles = {
+  content: {
+    top: "20%",
+    left: "20%",
+    right: "20%",
+    bottom: "auto",
+    padding: "30px"
+  },
+};
 
 export default function TodoComponent({ todo }) {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -42,7 +53,9 @@ export default function TodoComponent({ todo }) {
     <div className="col-md-3 border p-3 m-5">
       <h3>{todo.title}</h3>
       <p>{todo.content}</p>
-      <p>Last updated:{todo.updatedAt}</p>
+      <p className="fst-italic text-end mt-5 text-secondary">
+        Last updated: {new Date(todo.updatedAt).toDateString()}
+      </p>
       <div className="text-end">
         <button
           type="button"
@@ -61,13 +74,17 @@ export default function TodoComponent({ todo }) {
       </div>
 
       <div>
-        <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+        >
           <form className="form" onSubmit={editTodo}>
             <div className="mb-3">
               <label className="form-label">Title</label>
               <input
                 type="text"
-                className="form-control"
+                class="form-control"
                 defaultValue={todo.title}
                 onChange={(e) => {
                   setEditedTitle(e.target.value);
