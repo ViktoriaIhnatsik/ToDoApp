@@ -20,17 +20,19 @@ router.post('/', async (req, res) => {
   const { title, content } = req.body;
   const newTodo = await Todo.create({
     title,
-    content,
+    content
   });
   res.status(200).json(newTodo);
 });
 
 // update item
 router.post('/:id', async (req, res) => {
- const updatedTodo = await Todo.findOneAndUpdate(
-   {_id: req.params.id},
-   req.body
-   );
+ const {  editedTitle, editedContent } = req.body;
+ const id = req.params.id;
+ const updatedTodo = await Todo.findByIdAndUpdate( id,{
+    title: editedTitle,
+    content: editedContent,
+ });
    res.status(200).json(updatedTodo);
 });
 
