@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 import { useState } from "react";
 import Modal from "react-modal";
 Modal.setAppElement(document.getElementById("root"));
@@ -9,7 +8,7 @@ const customStyles = {
     top: "20%",
     left: "20%",
     right: "20%",
-    bottom: "auto",
+    bottom: "20%",
     padding: "30px"
   },
 };
@@ -50,11 +49,11 @@ export default function TodoComponent({ todo }) {
   };
 
   return (
-    <div className="col-md-3 border p-3 m-5">
+    <div className="col-md-3 border p-3 m-5" >
       <h3>{todo.title}</h3>
       <p>{todo.content}</p>
       <p className="fst-italic text-end mt-5 text-secondary">
-        Last updated: {new Date(todo.updatedAt).toDateString()}
+        Updated: {new Date(todo.updatedAt).toDateString()}
       </p>
       <div className="text-end">
         <button
@@ -95,12 +94,16 @@ export default function TodoComponent({ todo }) {
               <label className="form-label">Content</label>
               <textarea
                 className="form-control"
-                defaultValue={todo.content}
+                rows="6"
+                placeholder={todo.content}
                 onChange={(e) => {
                   setEditedContent(e.target.value);
                 }}
               />
             </div>
+            <p className="fst-italic text-end mt-1 text-secondary">
+              Updated: {new Date(todo.updatedAt).toDateString()}
+            </p>
 
             <button
               type="button"
