@@ -18,10 +18,7 @@ export default function TodoFormComponent() {
   };
 
   return (
-    <form
-      className="form shadow rounded p-5 m-5 "
-      onSubmit={handleOnSubmit}
-    >
+    <form className="form shadow rounded p-5 m-5 " onSubmit={handleOnSubmit}>
       <div className="mb-3 ">
         <label className="form-label">Title</label>
         <input

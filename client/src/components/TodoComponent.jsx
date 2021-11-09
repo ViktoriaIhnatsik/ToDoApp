@@ -9,7 +9,7 @@ const customStyles = {
     left: "20%",
     right: "20%",
     bottom: "20%",
-    padding: "30px"
+    padding: "30px",
   },
 };
 
@@ -49,7 +49,7 @@ export default function TodoComponent({ todo }) {
   };
 
   return (
-    <div className="col-md-3 border p-3 m-5" >
+    <div className="col-md-3 border p-3 m-5">
       <h3>{todo.title}</h3>
       <p>{todo.content}</p>
       <p className="fst-italic text-end mt-5 text-secondary">
