@@ -95,7 +95,7 @@ export default function TodoComponent({ todo }) {
               <textarea
                 className="form-control"
                 rows="6"
-                placeholder={todo.content}
+                defaultValue={todo.content}
                 onChange={(e) => {
                   setEditedContent(e.target.value);
                 }}
