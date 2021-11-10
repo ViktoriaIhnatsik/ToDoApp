@@ -15,8 +15,8 @@ const customStyles = {
 
 export default function TodoComponent({ todo }) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [editedTitle, setEditedTitle] = useState("");
-  const [editedContent, setEditedContent] = useState("");
+  const [editedTitle, setEditedTitle] = useState(todo.title);
+  const [editedContent, setEditedContent] = useState(todo.content);
 
   function openModal() {
     setIsOpen(true);
@@ -83,7 +83,7 @@ export default function TodoComponent({ todo }) {
               <label className="form-label">Title</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 defaultValue={todo.title}
                 onChange={(e) => {
                   setEditedTitle(e.target.value);

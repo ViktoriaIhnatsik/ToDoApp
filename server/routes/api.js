@@ -49,7 +49,7 @@ router.post('/:id', async (req, res) => {
  const updatedTodo = await Todo.findByIdAndUpdate( id,{
     title: editedTitle,
     content: editedContent,
- });
+ }, { new: true });
    res.status(200).json(updatedTodo);
 }
 catch(err) {
