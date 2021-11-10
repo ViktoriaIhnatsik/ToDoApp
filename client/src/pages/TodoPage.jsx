@@ -23,9 +23,13 @@ export default function TodoPage() {
       <TodoFormComponent />
 
       <div className="row">
-        {todos.map((item, key) => {
-          return <TodoComponent key={key} todo={item} />;
-        })}
+        {todos ? (
+          todos.map((item, key) => {
+            return <TodoComponent key={key} todo={item} />;
+          })
+        ) : (
+          <h3>Loading ...</h3>
+        )}
       </div>
     </div>
   );
