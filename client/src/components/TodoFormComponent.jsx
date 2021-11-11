@@ -7,7 +7,7 @@ export default function TodoFormComponent() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/todo/";
+    const url = `https://td-app-mern.herokuapp.com/todo`;
     fetch(url, {
       method: "POST",
       headers: {

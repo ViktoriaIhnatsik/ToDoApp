@@ -28,7 +28,7 @@ export default function TodoComponent({ todo }) {
 
   const editTodo = (e) => {
     e.preventDefault();
-    const url = `http://localhost:5000/todo/${todo._id}`;
+    const url = `https://td-app-mern.herokuapp.com/todo/${todo._id}`;
     fetch(url, {
       method: "POST",
       body: JSON.stringify({ editedTitle, editedContent }),
@@ -39,13 +39,15 @@ export default function TodoComponent({ todo }) {
   };
 
   const deleteTodo = (id) => {
-    const url = `http://localhost:5000/todo/${id}`;
+    const url = `https://td-app-mern.herokuapp.com/todo/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(window.location.reload());
+    })
+      .then((res) => res.json())
+      .then(window.location.reload());
   };
 
   return (

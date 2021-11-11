@@ -10,7 +10,7 @@ export default function TodoPage() {
   }, []);
 
   function getTodos() {
-    const url = "http://localhost:5000/todo";
+    const url = `https://td-app-mern.herokuapp.com/todo`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setTodos(data));
