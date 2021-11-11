@@ -1,7 +1,10 @@
 # ToDoApp
 Todo App Mern projekt
-
+client:
 :link: https://td-app-mern.netlify.app/
+
+server:
+:link: https://td-app-mern.herokuapp.com/todo
 
  **Node.js kurs**
  >Uppgift:
